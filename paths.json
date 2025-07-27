@@ -1,10 +1,10 @@
 {
   "mappings": [
-    "/content/PriyankaCars/:/",
-    "/content/PriyankaCars/configuration:/.helix/config.json",
-    "/content/PriyankaCars/metadata:/metadata.json"
+    "/content/Nexa/:/",
+    "/content/Nexa/configuration:/.helix/config.json",
+    "/content/Nexa/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/PriyankaCars/"
+    "/content/Nexa/"
   ]
 }
