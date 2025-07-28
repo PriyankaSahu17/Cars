@@ -11,6 +11,7 @@
 @media (min-width: 601px) {
   .mobile-banner {
     display: none;
+    width:100%;
   }
 }
 
