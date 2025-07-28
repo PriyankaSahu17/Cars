@@ -57,6 +57,57 @@ async function loadFonts() {
     // do nothing
   }
 }
+// function autolinkModals(element) {
+//   element.addEventListener('click', async (e) => {
+//     const origin = e.target.closest('a');
+
+//     if (origin && origin.href && origin.href.includes('/modals/')) {
+//       e.preventDefault();
+//       const { openModal } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
+//       openModal(origin.href);
+//     }
+//   });
+// }
+function autolinkModals(element) {
+  element.addEventListener('click', async (e) => {
+    const origin = e.target.closest('a');
+
+    if (!origin || !origin.href) return;
+
+    const href = origin.href;
+
+    // Handle modal for YouTube link
+    if (origin.dataset.modalType === 'youtube' || href.includes('youtube.com/watch')) {
+      e.preventDefault();
+
+      const { createModal } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
+      
+      const videoId = new URL(href).searchParams.get('v');
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      iframe.width = '560';
+      iframe.height = '315';
+      iframe.allow =
+        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('video-container');
+      wrapper.appendChild(iframe);
+
+      const { showModal } = await createModal([wrapper]);
+      showModal();
+      return;
+    }
+
+    // Default modal loading from fragment
+    if (href.includes('/modals/')) {
+      e.preventDefault();
+      const { openModal } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
+      openModal(href);
+    }
+  });
+}
 
 /**
  * Builds all synthetic blocks in a container element.
@@ -114,6 +165,7 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
+  autolinkModals(doc);
   const main = doc.querySelector('main');
   await loadSections(main);
 
