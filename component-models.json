@@ -237,13 +237,6 @@
         "name": "link",
         "label": "Link",
         "multi": false
-      },
-      {
-        "component": "richtext",
-        "name": "alt-text",
-        "value": "",
-        "label": "Alt Text",
-        "valueType": "string"
       }
     ]
   }
