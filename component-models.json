@@ -214,5 +214,37 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "banner-carousel-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "desktop-image",
+        "label": "Desktop Image",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "mobile-image",
+        "label": "Mobile Image",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "alt-text",
+        "value": "",
+        "label": "Alt Text",
+        "valueType": "string"
+      }
+    ]
   }
 ]
